@@ -150,23 +150,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.01
-  shiftUp: 27
-  shiftDown: 27
-  shiftLeft: 27
-  shiftRight: 27
-  handUpOffset: {x: 0.07, y: -0.7, z: 0}
+  shift: 27
+  TurnUpLeftOffset: {x: 0.075, y: -0.4606, z: 0}
+  TurnUpLeftOffset2: {x: -0.931, y: -0.066, z: 0}
+  TurnDownLeftOffset: {x: -0.075, y: 0.4606, z: 0}
+  TurnDownLeftOffset2: {x: -0.931, y: -0.066, z: 0}
   handDownOffset: {x: -0.07, y: -0.07, z: 0}
   handLeftOffset: {x: 0.7, y: 0.07, z: 0}
   handRightOffset: {x: -0.7, y: -0.07, z: 0}
-  timer: 500
   segment: {fileID: 5161529229646097914, guid: 7c9a6c022af46e44097ee5f0e4a4e193, type: 3}
+  leftTurnSegment: {fileID: 4749866403785528196, guid: 8e49c86958ae69f408e04a26731cf6b7,
+    type: 3}
+  rightTurnSegment: {fileID: 3627208508129938107, guid: e021923d964f30241afa640572c7685a,
+    type: 3}
   tail:
   - {fileID: 5161529229646097914, guid: 7c9a6c022af46e44097ee5f0e4a4e193, type: 3}
   direction: {x: 0, y: 0, z: 0}
   iteration: 27
   lastDirection: 0
   handOffset: {x: 0, y: 0, z: 0}
-  shift: 0
 --- !u!4 &414735623
 Transform:
   m_ObjectHideFlags: 0
