@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using TMPro;
 
 public class CoinsAmmountDisplay : MonoBehaviour
 {
@@ -16,6 +17,13 @@ public class CoinsAmmountDisplay : MonoBehaviour
 	public static Dictionary<MoneyType,int> dictionary = new Dictionary<MoneyType,int>();
 	public void Update()
 	{
-		dictionary[MoneyType].ToString();
+		foreach(Transform child in transform)
+		{
+			if (child.tag == "Text")
+			{
+				child.GetComponent<TextMeshProUGUI>().text = dictionary[MoneyType].ToString();
+			}
+		}
+		
 	}
 }

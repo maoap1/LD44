@@ -9,6 +9,6 @@ public class DestroyOther : DestroyMe
 		get => SleepingTime;
 		protected set { }
 	}
-	public override void Run() => Destroy(gameObject);
+	protected override void Activate() => Destroy(gameObject);
 }
 
