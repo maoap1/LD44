@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -144,14 +145,19 @@ public class PlayerController : MonoBehaviour
 	bool isSleeping = false;
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Money"))
+		if (other.tag == "Wall")
+			SceneManager.LoadScene("GameOver");
+		else
 		{
-			CoinsAmmountDisplay.dictionary[other.GetComponent<DestroyCoin>().myType]++;
+			if (other.CompareTag("Money"))
+			{
+				CoinsAmmountDisplay.dictionary[other.GetComponent<DestroyCoin>().myType]++;
+			}
+			isSleeping = true;
+			sleepingStartTime = Time.timeSinceLevelLoad;
+			sleepTime = other.GetComponent<DestroyMe>().SleepTime;
+			other.GetComponent<DestroyMe>().RunAndPlaySound();
 		}
-		isSleeping = true;
-		sleepingStartTime = Time.timeSinceLevelLoad;
-		sleepTime = other.GetComponent<DestroyMe>().SleepTime;
-		other.GetComponent<DestroyMe>().RunAndPlaySound();
 	}
 
 }
