@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -25,8 +26,11 @@ public class Timer : MonoBehaviour
 		if (Progress > maxColorValue / 2)
 			DebugingColor = new Color(2 * (maxColorValue - Progress), maxColorValue, 0);
 		else
+		{
 			DebugingColor = new Color(maxColorValue, 2 * Progress, 0);
-
+			if(Progress <= 0)
+				SceneManager.LoadScene("GameOver");
+		}
 		fill.GetComponent<Image>().color = DebugingColor;
         currValue -= Time.deltaTime;
 		slider.value = Progress;
