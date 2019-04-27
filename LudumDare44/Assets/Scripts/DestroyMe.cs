@@ -4,6 +4,15 @@ using UnityEngine;
 
 public abstract class DestroyMe : MonoBehaviour
 {
+	bool Used = false;
 	public virtual int SleepTime { get; protected set; }
-	public abstract void Run();
+	protected abstract void Activate();
+	public void Run()
+	{
+		if (!Used)
+		{
+			Used = true;
+			Activate();
+		}
+	}
 }

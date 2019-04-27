@@ -36,8 +36,6 @@ public class PlayerController : MonoBehaviour
         lastDirection = ID_UP;
         shift = shiftUp;
         handOffset = handUpOffset;
-        Instantiate(segment, transform.position, transform.rotation);
-        tail.Add(segment);
     }
 
     // Update is called once per frame
@@ -110,7 +108,7 @@ public class PlayerController : MonoBehaviour
         }
         if (iteration >= shift)
         {
-            Instantiate(segment, transform.position+handOffset, transform.rotation);
+            GameObject newSegment = Instantiate(segment, transform.position, transform.rotation);
             GameObject lastSegment = tail[tail.Count - 1];
             foreach (Transform child in lastSegment.transform)
             {
@@ -119,7 +117,7 @@ public class PlayerController : MonoBehaviour
                     child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 }
             }
-            tail.Add(segment);
+            tail.Add(newSegment);
             iteration = 0;
         }
         else
@@ -129,15 +127,24 @@ public class PlayerController : MonoBehaviour
         transform.position += speed * direction;
     }
 
-	float sleepStartingTime;
+	private void FixedUpdate()
+	{
+		if (isSleeping && sleepingStartTime + sleepTime > Time.timeSinceLevelLoad)
+			isSleeping = false;
+	}
+	float sleepingStartTime;
+	float sleepTime;
 	bool isSleeping = false;
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.collider.CompareTag("Money"))
 		{
-			CoinsAmmountDisplay.dictionary[collision.collider.GetComponent<DestroyCoin>().myType]++;
+			//CoinsAmmountDisplay.dictionary[collision.collider.GetComponent<DestroyCoin>().myType]++;
 		}
 		isSleeping = true;
+		sleepingStartTime = Time.timeSinceLevelLoad;
+		sleepTime = collision.collider.GetComponent<DestroyMe>().SleepTime;
+		collision.collider.GetComponent<DestroyMe>().Run();
 	}
 
 }
