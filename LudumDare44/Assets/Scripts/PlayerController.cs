@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 1.0f;
+    public float speed = 0.01f;
     public int shift = 10;
     
     public float timer = 500.0f;
