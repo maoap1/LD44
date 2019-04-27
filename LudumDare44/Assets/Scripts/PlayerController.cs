@@ -10,10 +10,7 @@ public class PlayerController : MonoBehaviour
     const int ID_DOWN = 4;
 
     public float speed = 0.01f;
-    public int shiftUp = 27;
-    public int shiftDown = 27;
-    public int shiftLeft = 27;
-    public int shiftRight = 27;
+    public int shift = 27;
     public Vector3 handUpOffset = new Vector3(0.07f,-0.7f,0);
     public Vector3 handDownOffset = new Vector3(-0.07f,-0.07f,0);
     public Vector3 handLeftOffset = new Vector3(0.7f,0.07f,0);
@@ -21,20 +18,19 @@ public class PlayerController : MonoBehaviour
     public float timer = 500.0f;
 
     public GameObject segment;
+    public GameObject leftTurnSegment;
 
     public List<GameObject> tail;
     public Vector3 direction;
     public int iteration = 27;
     public int lastDirection;
     public Vector3 handOffset;
-    public int shift;
 
     // Start is called before the first frame update
     void Start()
     {
         direction = Vector3.up;
         lastDirection = ID_UP;
-        shift = shiftUp;
         handOffset = handUpOffset;
     }
 
@@ -45,12 +41,15 @@ public class PlayerController : MonoBehaviour
         {
             handOffset = handLeftOffset;
             iteration = 0;
-            shift = shiftLeft;
             direction = Vector3.left;
             if (lastDirection == ID_UP)
             {
                 transform.Rotate(0, 0, 90);
-                transform.position += handRightOffset;
+                GameObject lastSegment = tail[tail.Count - 1];
+                transform.position = lastSegment.transform.position + shift * Vector3.up;
+                lastSegment.GetComponent<SpriteRenderer>().enabled = false;
+                GameObject newSegment = Instantiate(segment, transform.position, transform.rotation);
+
             }
             else if(lastDirection == ID_DOWN)
             {
@@ -62,7 +61,6 @@ public class PlayerController : MonoBehaviour
         {
             handOffset = handRightOffset;
             iteration = 0;
-            shift = shiftRight;
             direction = Vector3.right;
             if (lastDirection == ID_UP)
             {
@@ -78,7 +76,6 @@ public class PlayerController : MonoBehaviour
         {
             handOffset = handUpOffset;
             iteration = 0;
-            shift = shiftUp;
             direction = Vector3.up;
             if (lastDirection == ID_LEFT)
             {
@@ -94,7 +91,6 @@ public class PlayerController : MonoBehaviour
         {
             handOffset = handDownOffset;
             iteration = 0;
-            shift = shiftDown;
             direction = Vector3.down;
             if (lastDirection == ID_LEFT)
             {
