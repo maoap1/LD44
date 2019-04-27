@@ -38,113 +38,120 @@ public class PlayerController : MonoBehaviour
         handOffset = handUpOffset;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if ((Input.GetButtonDown("Left")) && (lastDirection != ID_LEFT) && (lastDirection != ID_RIGHT))
-        {
-            handOffset = handLeftOffset;
-            iteration = 0;
-            shift = shiftLeft;
-            direction = Vector3.left;
-            if (lastDirection == ID_UP)
-            {
-                transform.Rotate(0, 0, 90);
-                transform.position += handRightOffset;
-            }
-            else if(lastDirection == ID_DOWN)
-            {
-                transform.Rotate(0, 0, -90);
-            }
-            lastDirection = ID_LEFT;
-        }
-        if ((Input.GetButtonDown("Right")) && (lastDirection != ID_RIGHT) && (lastDirection != ID_LEFT))
-        {
-            handOffset = handRightOffset;
-            iteration = 0;
-            shift = shiftRight;
-            direction = Vector3.right;
-            if (lastDirection == ID_UP)
-            {
-                transform.Rotate(0, 0, -90);
-            }
-            else if (lastDirection == ID_DOWN)
-            {
-                transform.Rotate(0, 0, 90);
-            }
-            lastDirection = ID_RIGHT;
-        }
-        if ((Input.GetButtonDown("Up")) && (lastDirection != ID_UP) && (lastDirection != ID_DOWN))
-        {
-            handOffset = handUpOffset;
-            iteration = 0;
-            shift = shiftUp;
-            direction = Vector3.up;
-            if (lastDirection == ID_LEFT)
-            {
-                transform.Rotate(0, 0, -90);
-            }
-            else if (lastDirection == ID_RIGHT)
-            {
-                transform.Rotate(0, 0, 90);
-            }
-            lastDirection = ID_UP;
-        }
-        if ((Input.GetButtonDown("Down")) && (lastDirection != ID_DOWN) && (lastDirection != ID_UP))
-        {
-            handOffset = handDownOffset;
-            iteration = 0;
-            shift = shiftDown;
-            direction = Vector3.down;
-            if (lastDirection == ID_LEFT)
-            {
-                transform.Rotate(0, 0, 90);
-            }
-            else if (lastDirection == ID_RIGHT)
-            {
-                transform.Rotate(0, 0, -90);
-            }
-            lastDirection = ID_DOWN;
-        }
-        if (iteration >= shift)
-        {
-            GameObject newSegment = Instantiate(segment, transform.position, transform.rotation);
-            GameObject lastSegment = tail[tail.Count - 1];
-            foreach (Transform child in lastSegment.transform)
-            {
-                if (child.gameObject.tag == "Hand")
-                {
-                    child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                }
-            }
-            tail.Add(newSegment);
-            iteration = 0;
-        }
-        else
-        {
-            iteration++;
-        }
-        transform.position += speed * direction;
-    }
+	// Update is called once per frame
+	void Update()
+	{
+		if (!isSleeping)
+		{
+			if ((Input.GetButtonDown("Left")) && (lastDirection != ID_LEFT) && (lastDirection != ID_RIGHT))
+			{
+				handOffset = handLeftOffset;
+				iteration = 0;
+				shift = shiftLeft;
+				direction = Vector3.left;
+				if (lastDirection == ID_UP)
+				{
+					transform.Rotate(0, 0, 90);
+					transform.position += handRightOffset;
+				}
+				else if (lastDirection == ID_DOWN)
+				{
+					transform.Rotate(0, 0, -90);
+				}
+				lastDirection = ID_LEFT;
+			}
+			if ((Input.GetButtonDown("Right")) && (lastDirection != ID_RIGHT) && (lastDirection != ID_LEFT))
+			{
+				handOffset = handRightOffset;
+				iteration = 0;
+				shift = shiftRight;
+				direction = Vector3.right;
+				if (lastDirection == ID_UP)
+				{
+					transform.Rotate(0, 0, -90);
+				}
+				else if (lastDirection == ID_DOWN)
+				{
+					transform.Rotate(0, 0, 90);
+				}
+				lastDirection = ID_RIGHT;
+			}
+			if ((Input.GetButtonDown("Up")) && (lastDirection != ID_UP) && (lastDirection != ID_DOWN))
+			{
+				handOffset = handUpOffset;
+				iteration = 0;
+				shift = shiftUp;
+				direction = Vector3.up;
+				if (lastDirection == ID_LEFT)
+				{
+					transform.Rotate(0, 0, -90);
+				}
+				else if (lastDirection == ID_RIGHT)
+				{
+					transform.Rotate(0, 0, 90);
+				}
+				lastDirection = ID_UP;
+			}
+			if ((Input.GetButtonDown("Down")) && (lastDirection != ID_DOWN) && (lastDirection != ID_UP))
+			{
+				handOffset = handDownOffset;
+				iteration = 0;
+				shift = shiftDown;
+				direction = Vector3.down;
+				if (lastDirection == ID_LEFT)
+				{
+					transform.Rotate(0, 0, 90);
+				}
+				else if (lastDirection == ID_RIGHT)
+				{
+					transform.Rotate(0, 0, -90);
+				}
+				lastDirection = ID_DOWN;
+			}
+			if (iteration >= shift)
+			{
+				GameObject newSegment = Instantiate(segment, transform.position, transform.rotation);
+				if (tail.Count != 0)
+				{
+					GameObject lastSegment = tail[tail.Count - 1];
+					foreach (Transform child in lastSegment.transform)
+					{
+						if (child.gameObject.tag == "Hand")
+						{
+							child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+						}
+					}
+				}
+				tail.Add(newSegment);
+				iteration = 0;
+			}
+			else
+			{
+				iteration++;
+			}
+			transform.position += speed * direction;
+		}
+	}
 
 	private void FixedUpdate()
 	{
-		if (isSleeping && sleepingStartTime + sleepTime > Time.timeSinceLevelLoad)
+		if(isSleeping)
+		if (isSleeping && sleepingStartTime + sleepTime < Time.timeSinceLevelLoad)
 			isSleeping = false;
 	}
 	float sleepingStartTime;
-	float sleepTime;
+	int sleepTime;
 	bool isSleeping = false;
-	private void OnCollisionEnter(Collision collision)
+	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (collision.collider.CompareTag("Money"))
+		if (other.CompareTag("Money"))
 		{
-			//CoinsAmmountDisplay.dictionary[collision.collider.GetComponent<DestroyCoin>().myType]++;
+			CoinsAmmountDisplay.dictionary[other.GetComponent<DestroyCoin>().myType]++;
 		}
 		isSleeping = true;
 		sleepingStartTime = Time.timeSinceLevelLoad;
-		sleepTime = collision.collider.GetComponent<DestroyMe>().SleepTime;
-		collision.collider.GetComponent<DestroyMe>().Run();
+		sleepTime = other.GetComponent<DestroyMe>().SleepTime;
+		other.GetComponent<DestroyMe>().RunAndPlaySound();
 	}
 
 }
