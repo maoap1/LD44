@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3331033673893866452}
   m_Layer: 0
   m_Name: segment_right_turn
-  m_TagString: Untagged
+  m_TagString: TurnSegment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -10,6 +10,7 @@ TagManager:
   - Text
   - Wall
   - Shadow
+  - TurnSegment
   layers:
   - Default
   - TransparentFX

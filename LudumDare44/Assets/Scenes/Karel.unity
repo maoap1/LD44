@@ -229,20 +229,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segmentsZ: 900
-  speed: 0.01
-  shift: 27
+  speed: 0.05
+  shift: 4
+  reverseShift: 1
   segment: {fileID: 5161529229646097914, guid: 7c9a6c022af46e44097ee5f0e4a4e193, type: 3}
   leftTurnSegment: {fileID: 4749866403785528196, guid: 8e49c86958ae69f408e04a26731cf6b7,
     type: 3}
   rightTurnSegment: {fileID: 3627208508129938107, guid: e021923d964f30241afa640572c7685a,
     type: 3}
-  tail:
-  - {fileID: 5161529229646097914, guid: 7c9a6c022af46e44097ee5f0e4a4e193, type: 3}
   direction: {x: 0, y: 0, z: 0}
   iteration: 27
   lastDirection: 0
   handOffset: {x: 0, y: 0, z: 0}
   isReadyToTurn: 0
+  reverse: 0
 --- !u!4 &414735623
 Transform:
   m_ObjectHideFlags: 0
@@ -275,6 +275,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Segment
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161529229646097914, guid: 7c9a6c022af46e44097ee5f0e4a4e193,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8500903181804316689, guid: 7c9a6c022af46e44097ee5f0e4a4e193,
         type: 3}

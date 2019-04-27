@@ -17,15 +17,16 @@ public struct TurnFromToOffsets
 public class PlayerController : MonoBehaviour
 {
 	#region defionitions of fields
-	public int segmentsZ = 900;
+	public float segmentsZ = 900;
 
 	const int ID_UP = 1;
 	const int ID_LEFT = 2;
 	const int ID_RIGHT = 3;
 	const int ID_DOWN = 4;
 
-	public float speed = 0.01f;
-	public int shift = 27;
+	public float speed = 0.05f;
+	public int shift = 4;
+    public int reverseShift = 1;
 	public TurnFromToOffsets UpLeft = new TurnFromToOffsets(
         first: new Vector3(0.075f, -0.4606f, 0),
 		second: new Vector3(-0.931f, -0.066f, 0)
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour
         first: new Vector3(-0.075f, 0.4606f, 0),
 		second: new Vector3(-0.931f, -0.066f, 0)
 		);
-	public TurnFromToOffsets UpRight = new TurnFromToOffsets(//hotovo
+	public TurnFromToOffsets UpRight = new TurnFromToOffsets(
         first: new Vector3(0.07f, -0.4606f, 0),
 		second: new Vector3(0.931f, 0.0756f, 0)
 		);
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
 		first: new Vector3(0.4606f, 0.066f, 0),
 		second: new Vector3(-0.075f, 0.931f, 0)
 		);
-	public TurnFromToOffsets LeftDown = new TurnFromToOffsets( //hotovo  ---  ne uplne
+	public TurnFromToOffsets LeftDown = new TurnFromToOffsets(
 		first: new Vector3(0.4606f, 0.066f, 0),
 		second: new Vector3(0.066f, -0.931f, 0)
 		);
@@ -71,15 +72,17 @@ public class PlayerController : MonoBehaviour
     public bool isReadyToTurn;
     public bool reverse;
 
-	#endregion
-	// Start is called before the first frame update
-	void Start()
-	{
-		direction = Vector3.up;
-		lastDirection = ID_UP;
+    #endregion
+    // Start is called before the first frame update
+    void Start()
+    {
+        direction = Vector3.up;
+        lastDirection = ID_UP;
         isReadyToTurn = true;
         reverse = false;
-        GameObject newSegment = Instantiate(segment, transform.position, transform.rotation);
+        GameObject newSegment = Instantiate(segment, new Vector3( transform.position.x,
+            transform.position.y, segmentsZ + 1), 
+            transform.rotation);
         tail = new Stack<GameObject>();
         tail.Push(newSegment);
     }
@@ -88,12 +91,14 @@ public class PlayerController : MonoBehaviour
 	{
         GameObject lastSegment = tail.Peek();
 		transform.position = lastSegment.transform.position + whereToTurn.first;
-		GameObject newSegment = Instantiate(turnSegment
-			, new Vector3(transform.position.x, transform.position.y, segmentsZ--)
-			, transform.rotation);
+		GameObject newSegment = Instantiate(turnSegment, 
+            new Vector3(transform.position.x, transform.position.y, segmentsZ),
+            transform.rotation);
+        segmentsZ -= 0.01f;
 		transform.Rotate(0, 0, rotationZ);
 		transform.position += whereToTurn.second;
         isReadyToTurn = false;
+        tail.Push(newSegment);
     }
 
 	void RotateClockwise(TurnFromToOffsets whereToTurn) => OurInnerRotate(whereToTurn, -90, rightTurnSegment);
@@ -104,11 +109,29 @@ public class PlayerController : MonoBehaviour
 	{
         if (reverse)
         {
-            if (iteration >= shift)
+            if (iteration >= reverseShift)
             {
                 GameObject segment = tail.Pop();
                 segment.SetActive(false);
                 iteration = 0;
+                if (tail.Count == 0)
+                {
+                    SceneManager.LoadScene("GameOver");
+                    return;
+                }
+                segment = tail.Peek();
+                while ((segment.tag == "TurnSegment") && (tail.Count > 1))
+                {
+                    tail.Pop().SetActive(false);
+                    segment = tail.Peek();
+                }
+                foreach (Transform child in segment.transform)
+                {
+                    if (child.gameObject.tag == "Hand")
+                    {
+                        child.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                    }
+                }
             }
             else
             {
@@ -123,6 +146,15 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetButtonDown("Flee"))
                 {
                     reverse = true;
+                    transform.position = new Vector3(0, 0, -15);
+                    GameObject segment = tail.Peek();
+                    foreach (Transform child in segment.transform)
+                    {
+                        if (child.gameObject.tag == "Hand")
+                        {
+                            child.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                        }
+                    }
                     return;
                 }
 			    if ((Input.GetButtonDown("Left")) && (lastDirection != ID_LEFT) && (lastDirection != ID_RIGHT))
@@ -187,8 +219,9 @@ public class PlayerController : MonoBehaviour
 			{
                 isReadyToTurn = true;
 				GameObject newSegment = Instantiate(segment
-					, new Vector3(transform.position.x, transform.position.y, segmentsZ--)
+					, new Vector3(transform.position.x, transform.position.y, segmentsZ)
 					, transform.rotation);
+                segmentsZ -= 0.01f;
 				GameObject lastSegment = tail.Peek();
 				foreach (Transform child in lastSegment.transform)
 				{
