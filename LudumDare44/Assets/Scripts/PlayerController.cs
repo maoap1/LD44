@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isSleeping)
+        {
+
         if ((Input.GetButtonDown("Left")) && (lastDirection != ID_LEFT) && (lastDirection != ID_RIGHT))
         {
             handOffset = handLeftOffset;
@@ -121,9 +124,11 @@ public class PlayerController : MonoBehaviour
             iteration++;
         }
         transform.position += speed * direction;
+        }
+
     }
 
-	private void FixedUpdate()
+    private void FixedUpdate()
 	{
 		if(isSleeping)
 		if (isSleeping && sleepingStartTime + sleepTime < Time.timeSinceLevelLoad)
