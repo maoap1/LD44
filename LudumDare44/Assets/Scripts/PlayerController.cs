@@ -23,9 +23,8 @@ public class PlayerController : MonoBehaviour
     public GameObject segment;
 
     public List<GameObject> tail;
-    public GameObject head;
     public Vector3 direction;
-    public int iteration = 10;
+    public int iteration = 27;
     public int lastDirection;
     public Vector3 handOffset;
     public int shift;
@@ -109,8 +108,16 @@ public class PlayerController : MonoBehaviour
         }
         if (iteration >= shift)
         {
-            Instantiate(segment, transform.position+handOffset, transform.rotation);
-            tail.Add(segment);
+            GameObject newSegment = Instantiate(segment, transform.position, transform.rotation);
+            GameObject lastSegment = tail[tail.Count - 1];
+            foreach (Transform child in lastSegment.transform)
+            {
+                if (child.gameObject.tag == "Hand")
+                {
+                    child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                }
+            }
+            tail.Add(newSegment);
             iteration = 0;
         }
         else
@@ -132,7 +139,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (collision.collider.CompareTag("Money"))
 		{
-			CoinsAmmountDisplay.dictionary[collision.collider.GetComponent<DestroyCoin>().myType]++;
+			//CoinsAmmountDisplay.dictionary[collision.collider.GetComponent<DestroyCoin>().myType]++;
 		}
 		isSleeping = true;
 		sleepingStartTime = Time.timeSinceLevelLoad;
