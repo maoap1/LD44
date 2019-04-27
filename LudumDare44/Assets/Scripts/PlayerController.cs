@@ -129,5 +129,15 @@ public class PlayerController : MonoBehaviour
         transform.position += speed * direction;
     }
 
-  
+	float sleepStartingTime;
+	bool isSleeping = false;
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.collider.CompareTag("Money"))
+		{
+			CoinsAmmountDisplay.dictionary[collision.collider.GetComponent<DestroyCoin>().myType]++;
+		}
+		isSleeping = true;
+	}
+
 }
