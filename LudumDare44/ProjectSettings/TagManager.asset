@@ -9,6 +9,7 @@ TagManager:
   - Segment
   - Text
   - Wall
+  - Shadow
   layers:
   - Default
   - TransparentFX

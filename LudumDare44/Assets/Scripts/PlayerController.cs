@@ -16,6 +16,8 @@ public struct TurnFromToOffsets
 
 public class PlayerController : MonoBehaviour
 {
+	#region defionitions of fields
+	public int segmentsZ = 900;
 
 	const int ID_UP = 1;
 	const int ID_LEFT = 2;
@@ -33,8 +35,8 @@ public class PlayerController : MonoBehaviour
 		second: new Vector3(-0.931f, -0.066f, 0)
 		);
 	public TurnFromToOffsets UpRight = new TurnFromToOffsets(//hotovo
-        first: new Vector3(0.075f, -0.4606f, 0),
-		second: new Vector3(0.931f, 0.066f, 0)
+        first: new Vector3(0.07f, -0.4606f, 0),
+		second: new Vector3(0.931f, 0.0756f, 0)
 		);
 	public TurnFromToOffsets DownRight = new TurnFromToOffsets(//hotovo
         first: new Vector3(-0.075f, 0.4606f, 0),
@@ -52,9 +54,9 @@ public class PlayerController : MonoBehaviour
 		first: new Vector3(0.4606f, 0.066f, 0),
 		second: new Vector3(-0.075f, 0.931f, 0)
 		);
-	public TurnFromToOffsets LeftDown = new TurnFromToOffsets(
+	public TurnFromToOffsets LeftDown = new TurnFromToOffsets( //hotovo  ---  ne uplne
 		first: new Vector3(0.4606f, 0.066f, 0),
-		second: new Vector3(0.075f, -0.931f, 0)
+		second: new Vector3(0.066f, -0.931f, 0)
 		);
 
 	public GameObject segment;
@@ -67,21 +69,22 @@ public class PlayerController : MonoBehaviour
 	public int lastDirection;
 	public Vector3 handOffset;
     public bool isReadyToTurn;
-
+	#endregion
 	// Start is called before the first frame update
 	void Start()
 	{
 		direction = Vector3.up;
 		lastDirection = ID_UP;
         isReadyToTurn = true;
-
     }
 
 	void OurInnerRotate(TurnFromToOffsets whereToTurn, int rotationZ, GameObject turnSegment)
 	{
 		GameObject lastSegment = tail[tail.Count - 1];
 		transform.position = lastSegment.transform.position + whereToTurn.first;
-		GameObject newSegment = Instantiate(turnSegment, transform.position, transform.rotation);
+		GameObject newSegment = Instantiate(turnSegment
+			, new Vector3(transform.position.x, transform.position.y, segmentsZ--)
+			, transform.rotation);
 		transform.Rotate(0, 0, rotationZ);
 		transform.position += whereToTurn.second;
         isReadyToTurn = false;
@@ -158,7 +161,9 @@ public class PlayerController : MonoBehaviour
             if (iteration >= shift)
 			{
                 isReadyToTurn = true;
-				GameObject newSegment = Instantiate(segment, transform.position, transform.rotation);
+				GameObject newSegment = Instantiate(segment
+					, new Vector3(transform.position.x, transform.position.y, segmentsZ--)
+					, transform.rotation);
 				GameObject lastSegment = tail[tail.Count - 1];
 				foreach (Transform child in lastSegment.transform)
 				{
