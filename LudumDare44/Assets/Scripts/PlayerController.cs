@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
             if (lastDirection == ID_UP)
             {
                 transform.Rotate(0, 0, 90);
+                transform.position += handRightOffset;
             }
             else if(lastDirection == ID_DOWN)
             {
