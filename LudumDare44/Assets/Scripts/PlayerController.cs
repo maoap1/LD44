@@ -23,9 +23,8 @@ public class PlayerController : MonoBehaviour
     public GameObject segment;
 
     public List<GameObject> tail;
-    public GameObject head;
     public Vector3 direction;
-    public int iteration = 10;
+    public int iteration = 27;
     public int lastDirection;
     public Vector3 handOffset;
     public int shift;
@@ -37,6 +36,8 @@ public class PlayerController : MonoBehaviour
         lastDirection = ID_UP;
         shift = shiftUp;
         handOffset = handUpOffset;
+        Instantiate(segment, transform.position, transform.rotation);
+        tail.Add(segment);
     }
 
     // Update is called once per frame
@@ -110,6 +111,14 @@ public class PlayerController : MonoBehaviour
         if (iteration >= shift)
         {
             Instantiate(segment, transform.position+handOffset, transform.rotation);
+            GameObject lastSegment = tail[tail.Count - 1];
+            foreach (Transform child in lastSegment.transform)
+            {
+                if (child.gameObject.tag == "Hand")
+                {
+                    child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                }
+            }
             tail.Add(segment);
             iteration = 0;
         }
