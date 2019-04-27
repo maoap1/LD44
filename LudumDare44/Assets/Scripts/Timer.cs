@@ -12,19 +12,22 @@ public class Timer : MonoBehaviour
 	public float currValue { get; private set; }
 	public Color DebugingColor;
 
-	private byte maxColorValue => 255;
+	private float maxColorValue => 1;
     // Start is called before the first frame update
     void Start()
     {
 		currValue = initialValue;
     }
 
-	
     // Update is called once per frame
     void Update()
     {
-		DebugingColor = new Color(maxColorValue - Progress * maxColorValue, Progress * maxColorValue, 0);
-        fill.GetComponent<Image>().color = DebugingColor;
+		if (Progress > maxColorValue / 2)
+			DebugingColor = new Color(2 * (maxColorValue - Progress), maxColorValue, 0);
+		else
+			DebugingColor = new Color(maxColorValue, 2 * Progress, 0);
+
+		fill.GetComponent<Image>().color = DebugingColor;
         currValue -= Time.deltaTime;
 		slider.value = Progress;
     }
