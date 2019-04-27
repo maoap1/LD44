@@ -24,8 +24,8 @@ public class Timer : MonoBehaviour
     void Update()
     {
 		DebugingColor = new Color(maxColorValue - Progress * maxColorValue, Progress * maxColorValue, 0);
-		fill.color = DebugingColor;
-		currValue -= Time.deltaTime;
+        fill.GetComponent<Image>().color = DebugingColor;
+        currValue -= Time.deltaTime;
 		slider.value = Progress;
     }
 }
