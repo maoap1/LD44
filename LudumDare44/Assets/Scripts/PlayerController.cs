@@ -24,46 +24,38 @@ public class PlayerController : MonoBehaviour
 
 	public float speed = 0.01f;
 	public int shift = 27;
-	public TurnFromToOffsets UpLeft => new TurnFromToOffsets(
-		first: new Vector3(0.075f, -0.4606f, 0),
+	public TurnFromToOffsets UpLeft = new TurnFromToOffsets(//hotovo
+        first: new Vector3(0.075f, -0.4606f, 0),
 		second: new Vector3(-0.931f, -0.066f, 0)
 		);
-	public TurnFromToOffsets DownLeft => new TurnFromToOffsets(
-		first: new Vector3(-0.075f, 0.4606f, 0),
+	public TurnFromToOffsets DownLeft = new TurnFromToOffsets(//hotovo
+        first: new Vector3(-0.075f, 0.4606f, 0),
 		second: new Vector3(-0.931f, -0.066f, 0)
 		);
-	public TurnFromToOffsets UpRight => new TurnFromToOffsets(
-		first: new Vector3(0.075f, 0.4606f, 0),
-		second: new Vector3(0.0f, 0.0f, 0)
+	public TurnFromToOffsets UpRight = new TurnFromToOffsets(//hotovo
+        first: new Vector3(0.075f, -0.4606f, 0),
+		second: new Vector3(0.931f, 0.066f, 0)
 		);
-	public TurnFromToOffsets DownRight => new TurnFromToOffsets(
-		first: new Vector3(-0.075f, 0.4606f, 0),
-		second: new Vector3(-0.0f, 0.0f, 0)
+	public TurnFromToOffsets DownRight = new TurnFromToOffsets(//hotovo
+        first: new Vector3(-0.075f, 0.4606f, 0),
+		second: new Vector3(0.931f, 0.066f, 0)
 		);
-	public TurnFromToOffsets RightUp => new TurnFromToOffsets(
-		first: new Vector3(0.075f, 0.4606f, 0),
-		second: new Vector3(0.0f, 0.0f, 0)
+	public TurnFromToOffsets RightUp = new TurnFromToOffsets(//hotovo
+		first: new Vector3(-0.4606f, -0.0756f, 0),
+        second: new Vector3(-0.075f, 0.931f, 0)
+        );
+	public TurnFromToOffsets RightDown = new TurnFromToOffsets( //hotovo
+        first: new Vector3(-0.4606f, -0.066f, 0), 
+        second: new Vector3(0.075f, -0.931f, 0) 
+        );
+	public TurnFromToOffsets LeftUp = new TurnFromToOffsets( //hotovo
+		first: new Vector3(0.4606f, 0.066f, 0),
+		second: new Vector3(-0.075f, 0.931f, 0)
 		);
-	public TurnFromToOffsets RightDown => new TurnFromToOffsets(
-		first: new Vector3(-0.075f, 0.4606f, 0),
-		second: new Vector3(-0.0f, 0.0f, 0)
+	public TurnFromToOffsets LeftDown = new TurnFromToOffsets(
+		first: new Vector3(0.4606f, 0.066f, 0),
+		second: new Vector3(0.075f, -0.931f, 0)
 		);
-	public TurnFromToOffsets LeftUp => new TurnFromToOffsets(
-		first: new Vector3(0.075f, 0.4606f, 0),
-		second: new Vector3(0.0f, 0.0f, 0)
-		);
-	public TurnFromToOffsets LeftDown => new TurnFromToOffsets(
-		first: new Vector3(-0.075f, 0.4606f, 0),
-		second: new Vector3(-0.0f, 0.0f, 0)
-		);
-
-	//public Vector3 TurnUpLeftOffset = new Vector3(0.075f, -0.4606f, 0);
-	//   public Vector3 TurnUpLeftOffset2 = new Vector3(-0.931f, -0.066f, 0);
-	//   public Vector3 TurnDownLeftOffset = new Vector3(0.075f, -0.4606f, 0);
-	//   public Vector3 TurnDownLeftOffset2 = new Vector3(0.0f, 0.0f, 0);
-	public Vector3 handDownOffset = new Vector3(-0.07f, -0.07f, 0);
-	public Vector3 handLeftOffset = new Vector3(0.7f, 0.07f, 0);
-	public Vector3 handRightOffset = new Vector3(-0.7f, -0.07f, 0);
 
 	public GameObject segment;
 	public GameObject leftTurnSegment;
@@ -74,13 +66,16 @@ public class PlayerController : MonoBehaviour
 	public int iteration = 27;
 	public int lastDirection;
 	public Vector3 handOffset;
+    public bool isReadyToTurn;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		direction = Vector3.up;
 		lastDirection = ID_UP;
-	}
+        isReadyToTurn = true;
+
+    }
 
 	void OurInnerRotate(TurnFromToOffsets whereToTurn, int rotationZ, GameObject turnSegment)
 	{
@@ -89,7 +84,8 @@ public class PlayerController : MonoBehaviour
 		GameObject newSegment = Instantiate(turnSegment, transform.position, transform.rotation);
 		transform.Rotate(0, 0, rotationZ);
 		transform.position += whereToTurn.second;
-	}
+        isReadyToTurn = false;
+    }
 
 	void RotateClockwise(TurnFromToOffsets whereToTurn) => OurInnerRotate(whereToTurn, -90, rightTurnSegment);
 	void RotateAntiClockwise(TurnFromToOffsets whereToTurn) => OurInnerRotate(whereToTurn, 90, leftTurnSegment);
@@ -99,69 +95,69 @@ public class PlayerController : MonoBehaviour
 	{
 		if (!isSleeping)
 		{
-
-			if ((Input.GetButtonDown("Left")) && (lastDirection != ID_LEFT) && (lastDirection != ID_RIGHT))
+            if (isReadyToTurn)
+            {
+			    if ((Input.GetButtonDown("Left")) && (lastDirection != ID_LEFT) && (lastDirection != ID_RIGHT))
+			    {
+				    iteration = 0;
+				    direction = Vector3.left;
+				    if (lastDirection == ID_UP)
+				    {
+					    RotateAntiClockwise(UpLeft);
+				    }
+				    else if (lastDirection == ID_DOWN)
+				    {
+					    RotateClockwise(DownLeft);
+				    }
+				    lastDirection = ID_LEFT;
+                }
+			    if ((Input.GetButtonDown("Right")) && (lastDirection != ID_RIGHT) && (lastDirection != ID_LEFT))
+			    {
+				    iteration = 0;
+				    direction = Vector3.right;
+				    if (lastDirection == ID_UP)
+				    {
+					    RotateClockwise(UpRight);
+				    }
+				    else if (lastDirection == ID_DOWN)
+				    {
+					    RotateAntiClockwise(DownRight);
+				    }
+				    lastDirection = ID_RIGHT;
+			    }
+			    if ((Input.GetButtonDown("Up")) && (lastDirection != ID_UP) && (lastDirection != ID_DOWN))
+			    {
+				    //handOffset = handUpOffset;
+				    iteration = 0;
+				    direction = Vector3.up;
+				    if (lastDirection == ID_LEFT)
+				    {
+					    RotateClockwise(LeftUp);
+				    }
+				    else if (lastDirection == ID_RIGHT)
+				    {
+					    RotateAntiClockwise(RightUp);
+				    }
+				    lastDirection = ID_UP;
+			    }
+			    if ((Input.GetButtonDown("Down")) && (lastDirection != ID_DOWN) && (lastDirection != ID_UP))
+			    {
+				    iteration = 0;
+				    direction = Vector3.down;
+				    if (lastDirection == ID_LEFT)
+				    {
+					    RotateAntiClockwise(LeftDown);
+				    }
+				    else if (lastDirection == ID_RIGHT)
+				    {
+					    RotateClockwise(RightDown);
+				    }
+				    lastDirection = ID_DOWN;
+			    }
+            }
+            if (iteration >= shift)
 			{
-				handOffset = handLeftOffset;
-				iteration = 0;
-				direction = Vector3.left;
-				if (lastDirection == ID_UP)
-				{
-					RotateAntiClockwise(UpLeft);
-				}
-				else if (lastDirection == ID_DOWN)
-				{
-					RotateClockwise(DownLeft);
-				}
-				lastDirection = ID_LEFT;
-			}
-			if ((Input.GetButtonDown("Right")) && (lastDirection != ID_RIGHT) && (lastDirection != ID_LEFT))
-			{
-				handOffset = handRightOffset;
-				iteration = 0;
-				direction = Vector3.right;
-				if (lastDirection == ID_UP)
-				{
-					RotateClockwise(UpRight);
-				}
-				else if (lastDirection == ID_DOWN)
-				{
-					RotateAntiClockwise(DownRight);
-				}
-				lastDirection = ID_RIGHT;
-			}
-			if ((Input.GetButtonDown("Up")) && (lastDirection != ID_UP) && (lastDirection != ID_DOWN))
-			{
-				//handOffset = handUpOffset;
-				iteration = 0;
-				direction = Vector3.up;
-				if (lastDirection == ID_LEFT)
-				{
-					RotateClockwise(LeftUp);
-				}
-				else if (lastDirection == ID_RIGHT)
-				{
-					RotateAntiClockwise(RightUp);
-				}
-				lastDirection = ID_UP;
-			}
-			if ((Input.GetButtonDown("Down")) && (lastDirection != ID_DOWN) && (lastDirection != ID_UP))
-			{
-				handOffset = handDownOffset;
-				iteration = 0;
-				direction = Vector3.down;
-				if (lastDirection == ID_LEFT)
-				{
-					RotateAntiClockwise(LeftDown);
-				}
-				else if (lastDirection == ID_RIGHT)
-				{
-					RotateClockwise(RightDown);
-				}
-				lastDirection = ID_DOWN;
-			}
-			if (iteration >= shift)
-			{
+                isReadyToTurn = true;
 				GameObject newSegment = Instantiate(segment, transform.position, transform.rotation);
 				GameObject lastSegment = tail[tail.Count - 1];
 				foreach (Transform child in lastSegment.transform)
