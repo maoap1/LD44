@@ -9,7 +9,7 @@ public class DestroyCoin : DestroyMe
 	{
 		SleepTime = 0;
 	}
-	public override void Run()
+	protected override void Activate()
 	{
 
 		Destroy(gameObject);

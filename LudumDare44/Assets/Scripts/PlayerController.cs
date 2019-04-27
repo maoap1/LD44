@@ -120,7 +120,13 @@ public class PlayerController : MonoBehaviour
         transform.position += speed * direction;
     }
 
-	float sleepStartingTime;
+	private void FixedUpdate()
+	{
+		if (isSleeping && sleepingStartTime + sleepTime > Time.timeSinceLevelLoad)
+			isSleeping = false;
+	}
+	float sleepingStartTime;
+	float sleepTime;
 	bool isSleeping = false;
 	private void OnCollisionEnter(Collision collision)
 	{
@@ -129,6 +135,9 @@ public class PlayerController : MonoBehaviour
 			CoinsAmmountDisplay.dictionary[collision.collider.GetComponent<DestroyCoin>().myType]++;
 		}
 		isSleeping = true;
+		sleepingStartTime = Time.timeSinceLevelLoad;
+		sleepTime = collision.collider.GetComponent<DestroyMe>().SleepTime;
+		collision.collider.GetComponent<DestroyMe>().Run();
 	}
 
 }

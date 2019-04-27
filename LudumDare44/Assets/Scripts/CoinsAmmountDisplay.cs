@@ -16,6 +16,6 @@ public class CoinsAmmountDisplay : MonoBehaviour
 	public static Dictionary<MoneyType,int> dictionary = new Dictionary<MoneyType,int>();
 	public void Update()
 	{
-		dictionary[MoneyType].ToString();
+		GetComponentInChildren<TextMesh>().text = dictionary[MoneyType].ToString();
 	}
 }
