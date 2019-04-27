@@ -7,7 +7,7 @@ public abstract class DestroyMe : MonoBehaviour
 	bool Used = false;
 	public virtual int SleepTime { get; protected set; }
 	protected abstract void Activate();
-	public void Run()
+	public void RunAndPlaySound()
 	{
 		if (!Used)
 		{

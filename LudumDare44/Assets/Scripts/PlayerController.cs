@@ -125,22 +125,23 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (isSleeping && sleepingStartTime + sleepTime > Time.timeSinceLevelLoad)
+		if(isSleeping)
+		if (isSleeping && sleepingStartTime + sleepTime < Time.timeSinceLevelLoad)
 			isSleeping = false;
 	}
 	float sleepingStartTime;
-	float sleepTime;
+	int sleepTime;
 	bool isSleeping = false;
-	private void OnCollisionEnter(Collision collision)
+	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (collision.collider.CompareTag("Money"))
+		if (other.CompareTag("Money"))
 		{
-			//CoinsAmmountDisplay.dictionary[collision.collider.GetComponent<DestroyCoin>().myType]++;
+			CoinsAmmountDisplay.dictionary[other.GetComponent<DestroyCoin>().myType]++;
 		}
 		isSleeping = true;
 		sleepingStartTime = Time.timeSinceLevelLoad;
-		sleepTime = collision.collider.GetComponent<DestroyMe>().SleepTime;
-		collision.collider.GetComponent<DestroyMe>().Run();
+		sleepTime = other.GetComponent<DestroyMe>().SleepTime;
+		other.GetComponent<DestroyMe>().RunAndPlaySound();
 	}
 
 }
