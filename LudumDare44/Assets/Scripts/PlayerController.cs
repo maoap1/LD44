@@ -15,9 +15,9 @@ public class PlayerController : MonoBehaviour
     public int shiftLeft = 27;
     public int shiftRight = 27;
     public Vector3 handUpOffset = new Vector3(0.07f,-0.7f,0);
-    public Vector3 handDownOffset = new Vector3(0.0f,0.0f,0);
-    public Vector3 handLeftOffset = new Vector3(0.0f,0.0f,0);
-    public Vector3 handRightOffset = new Vector3(0.0f,0.0f,0);
+    public Vector3 handDownOffset = new Vector3(-0.07f,-0.07f,0);
+    public Vector3 handLeftOffset = new Vector3(0.7f,0.07f,0);
+    public Vector3 handRightOffset = new Vector3(-0.7f,-0.07f, 0);
     public float timer = 500.0f;
 
     public GameObject segment;
@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         direction = Vector3.up;
         lastDirection = ID_UP;
+        shift = shiftUp;
+        handOffset = handUpOffset;
     }
 
     // Update is called once per frame
