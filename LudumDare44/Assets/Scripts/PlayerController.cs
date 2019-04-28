@@ -16,7 +16,6 @@ public struct TurnFromToOffsets
 
 public class PlayerController : MonoBehaviour
 {
-	#region defionitions of fields
 	public float segmentsZ = 900;
     public string motherScene;
 
@@ -72,15 +71,17 @@ public class PlayerController : MonoBehaviour
 	public Vector3 handOffset;
     public bool isReadyToTurn;
     public bool reverse;
+    public bool reverseMusicPlaying;
 
-	#endregion
 	// Start is called before the first frame update
 	void Start()
 	{
 		isSleeping = true;
 		sleepingStartTime = Time.timeSinceLevelLoad;
 		sleepTime = 1;
-	}
+        reverseMusicPlaying = false;
+
+    }
 	void Awake()
     {
         direction = Vector3.down;
