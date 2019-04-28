@@ -11,7 +11,12 @@ public class DestroyCoin : DestroyMe
 	}
 	protected override void Activate()
 	{
-
-		Destroy(gameObject);
-	}
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<ShadowMode>().enabled = false;
+        foreach (Transform child in transform)
+        {
+            child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
 }

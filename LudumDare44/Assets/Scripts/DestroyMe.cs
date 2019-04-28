@@ -4,15 +4,30 @@ using UnityEngine;
 
 public abstract class DestroyMe : MonoBehaviour
 {
-	bool Used = false;
-	public virtual int SleepTime { get; protected set; }
+    public AudioSource audioSource;
+
+    bool used = false;
+
+    void Start()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+        //audioSource.Play();
+
+    }
+    public virtual int SleepTime { get; protected set; }
 	protected abstract void Activate();
 	public void RunAndPlaySound()
-	{
-		if (!Used)
+    {
+		if (!used)
 		{
-			Used = true;
-			Activate();
+			used = true;
+            audioSource.Play();
+            Activate();
 		}
 	}
 }
+
+
+
+
+
