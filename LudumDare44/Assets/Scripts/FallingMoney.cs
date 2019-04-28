@@ -11,7 +11,7 @@ public class FallingMoney : MonoBehaviour
 	int rint => r.Next();
 	float rfloat => rint * 2f / (int.MaxValue * 5f);
 
-	int probability = 1000000000;
+	int probability = 100000000;
 	// Update is called once per frame
 	void Update()
 	{
@@ -23,9 +23,9 @@ public class FallingMoney : MonoBehaviour
 		//}
 		if (rint < probability)
 		{
-			GameObject newBankNote = Instantiate(coins[rint % bankNotes.Count]);
-			newBankNote.transform.position = new Vector3(rint % 19 - 9, 5.3f, 0);
-			newBankNote.GetComponent<Rigidbody2D>().gravityScale = rfloat + 0.4f;
+			GameObject newBankNote = Instantiate(bankNotes[rint % bankNotes.Count]);
+			newBankNote.transform.position = new Vector3(rint % 19 - 9, 5.3f, -0.1f);
+			newBankNote.GetComponent<Rigidbody2D>().gravityScale = rfloat + 0.1f;
 		}
 	}
 }
