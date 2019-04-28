@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
-  myType: 0
+  myType: 1
 --- !u!114 &2233567206747194040
 MonoBehaviour:
   m_ObjectHideFlags: 0
