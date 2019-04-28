@@ -76,8 +76,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        direction = Vector3.up;
-        lastDirection = ID_UP;
+        direction = Vector3.down;
+        lastDirection = ID_DOWN;
         isReadyToTurn = true;
         reverse = false;
         GameObject newSegment = Instantiate(segment, new Vector3( transform.position.x,

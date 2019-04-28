@@ -11,6 +11,7 @@ TagManager:
   - Wall
   - Shadow
   - TurnSegment
+  - Garbage
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - 
   - 
   - Player
-  - 
+  - Background
   - 
   - 
   - 
@@ -45,6 +46,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3724787007
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
