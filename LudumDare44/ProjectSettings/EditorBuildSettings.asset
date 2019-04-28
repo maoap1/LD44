@@ -5,22 +5,37 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: d782c7f6cb6f9af4b8102d156a935e48
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 6c063592efd40cf44bcacb135f80d181
   - enabled: 1
-    path: Assets/Scenes/Malostranske.unity
-    guid: 82ae55fa8680c9647b779f05c821e8ee
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 53825ab3073c5ea4a99fdee49d35a9c3
   - enabled: 1
-    path: Assets/Scenes/KarelPlayground.unity
+    path: Assets/Scenes/GenericPickpocket.unity
     guid: 972760f5557291a46aa7fdb43c3503a3
+  - enabled: 1
+    path: Assets/Scenes/Japonec.unity
+    guid: 5af4085a459d8cf4cb53ec7499c92ca8
+  - enabled: 1
+    path: Assets/Scenes/Malostranske1.unity
+    guid: 59a30b7ebeb25424f94fef172a3c19fe
+  - enabled: 1
+    path: Assets/Scenes/Obesenec.unity
+    guid: da99bd31c38de314ea75fc0f82a47b9d
+  - enabled: 1
+    path: Assets/Scenes/Malostranske2.unity
+    guid: c106b6fb845f12442902c039e87c729b
+  - enabled: 1
+    path: Assets/Scenes/Cernoch.unity
+    guid: e81a7095e1a64254ba98f09d23859ce6
+  - enabled: 1
+    path: Assets/Scenes/Duchodkyne.unity
+    guid: 8ca3f0429b58797459d218310cadacad
+  - enabled: 1
+    path: Assets/Scenes/Panda.unity
+    guid: ca82ebd4432acb544aed3ea28e124e2a
+  - enabled: 1
+    path: Assets/Scenes/Selfie.unity
+    guid: 54522ee62b35d5943bfbe2c5688e2ecb
   m_configObjects: {}

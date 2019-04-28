@@ -24,6 +24,15 @@ public class CoinsAmmountDisplay : MonoBehaviour
 				child.GetComponent<TextMeshProUGUI>().text = dictionary[MoneyType].ToString();
 			}
 		}
-		
+	}
+	public static bool isWinGame
+	{
+		get
+		{
+			foreach (int ammount in dictionary.Values)
+				if (ammount < 1)
+					return false;
+			return true;
+		}
 	}
 }

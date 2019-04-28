@@ -7,5 +7,5 @@ public class ButtonsClick : MonoBehaviour
 {
 	public void QuitButton() => Application.Quit();
 
-	public void StartButton() => SceneManager.LoadScene("Malostranske");
+	public void StartButton() => SceneManager.LoadScene("Malostranske1");
 }
