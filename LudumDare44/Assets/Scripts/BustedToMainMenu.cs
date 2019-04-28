@@ -11,7 +11,8 @@ public class BustedToMainMenu : MonoBehaviour
 		if (Input.GetButtonDown("Flee") ||
 			Input.GetKeyDown(KeyCode.Escape) ||
 			Input.GetKeyDown(KeyCode.Space) ||
-			Input.GetKeyDown(KeyCode.KeypadEnter))
+			Input.GetKeyDown(KeyCode.KeypadEnter) ||
+			Input.GetButtonDown("Enter"))
 		{
 			SceneManager.LoadScene("MainMenu");
 		}
