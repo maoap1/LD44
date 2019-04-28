@@ -362,5 +362,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4563017833578090499, guid: 09e9907944749404a9e881c9ac2f3345,
+        type: 3}
+      propertyPath: sceneToShow
+      value: KarelPlayground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09e9907944749404a9e881c9ac2f3345, type: 3}

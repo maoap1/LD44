@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonsClick : MonoBehaviour
 {
-	public void Quit() => Application.Quit();
+	public void QuitButton() => Application.Quit();
 
-	public void Start() => SceneManager.LoadScene("Malostranske");
+	public void StartButton() => SceneManager.LoadScene("Malostranske");
 }

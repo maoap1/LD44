@@ -9,14 +9,5 @@ public class DestroyOther : DestroyMe
 		get => SleepingTime;
 		protected set { }
 	}
-    protected override void Activate()
-    {
-        GetComponent<Collider2D>().enabled = false;
-        GetComponent<ShadowMode>().enabled = false;
-        foreach (Transform child in transform)
-        {
-            child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        }
-    }
 }
 

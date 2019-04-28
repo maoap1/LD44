@@ -15,7 +15,15 @@ public abstract class DestroyMe : MonoBehaviour
 
     }
     public virtual int SleepTime { get; protected set; }
-	protected abstract void Activate();
+	protected virtual void Activate()
+	{
+		GetComponent<Collider2D>().enabled = false;
+		GetComponent<ShadowMode>().enabled = false;
+		foreach (Transform child in transform)
+		{
+			child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+		}
+	}
 	public void RunAndPlaySound()
     {
 		if (!used)
