@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/FirstScene.unity
+    guid: c8369187a87f0534eae5d389ced2342b
+  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 6c063592efd40cf44bcacb135f80d181
   - enabled: 1
@@ -27,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Cernoch.unity
     guid: e81a7095e1a64254ba98f09d23859ce6
   - enabled: 1
+    path: Assets/Scenes/LegendScene.unity
+    guid: 065262afecca69d4ca7b2ec1d2d60a50
+  - enabled: 1
     path: Assets/Scenes/Duchodkyne.unity
     guid: 8ca3f0429b58797459d218310cadacad
   - enabled: 1
@@ -35,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Selfie.unity
     guid: 54522ee62b35d5943bfbe2c5688e2ecb
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: e0f1fb927fc3b8446a3aa0dddf7ed503
   m_configObjects: {}

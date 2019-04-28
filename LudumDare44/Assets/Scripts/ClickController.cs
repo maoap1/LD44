@@ -37,7 +37,7 @@ public class ClickController : MonoBehaviour
     {
         transform.localScale = clickScaleVector;
 		//audioSource.Play();
-		if (sceneToShow != null)
+		if (sceneToShow != "")
 			SceneManager.LoadScene(sceneToShow);
     }
 
