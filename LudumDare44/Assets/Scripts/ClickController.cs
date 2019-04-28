@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClickController : MonoBehaviour
 {
     public float hoverScale = 1.1f;
     public float clickScale = 1.2f;
+	public string sceneToShow = null;
 
     private Vector3 normalScaleVector;
     private Vector3 hoverScaleVector;
@@ -34,7 +36,9 @@ public class ClickController : MonoBehaviour
     void OnMouseDown()
     {
         transform.localScale = clickScaleVector;
-        //audioSource.Play();
+		//audioSource.Play();
+		if (sceneToShow != null)
+			SceneManager.LoadScene(sceneToShow);
     }
 
     void OnMouseUpAsButton()
