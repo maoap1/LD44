@@ -213,12 +213,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 693884754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c81ac69848d37f45a7d0e11fbc69c03, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e12b68a41756714aaf6bd1a007e5b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverScale: 1.1
-  clickScale: 1.2
-  sceneToShow: 
 --- !u!1 &1612752267
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1612752269}
   - component: {fileID: 1612752268}
+  - component: {fileID: 1612752270}
   m_Layer: 0
   m_Name: busted
   m_TagString: Untagged
@@ -298,3 +296,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1612752270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612752267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df416ac903af0c844b14b6ab97b68bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
