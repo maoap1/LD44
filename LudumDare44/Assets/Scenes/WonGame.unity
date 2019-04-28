@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 730665537}
   - component: {fileID: 730665536}
+  - component: {fileID: 730665538}
   m_Layer: 0
   m_Name: milulas
   m_TagString: Untagged
@@ -193,12 +194,35 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730665535}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -0.1, z: 0}
+  m_LocalPosition: {x: -0.02, y: -0.1, z: 8}
   m_LocalScale: {x: 1.195, y: 1.22, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &730665538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730665535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f08e3922bd20f541aa32af839d042ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coins:
+  - {fileID: 4154380641889925906, guid: 4ecfa2ec8742e5c4e903069084a7d094, type: 3}
+  - {fileID: 1889013165893120600, guid: 5da68b42b7ea7e44b9c46371229f2775, type: 3}
+  - {fileID: 7479342756024054557, guid: c07d4decabd48ca4881812f33bc02952, type: 3}
+  - {fileID: 1535313312022914038, guid: 0ef0d7ceb918b074d972d7430895060b, type: 3}
+  - {fileID: 6917406008592180527, guid: 658f863492f96bd4c8150384a7277a3e, type: 3}
+  - {fileID: 8450239286633862241, guid: 1960bd320cb95de408bc6eacbf6987db, type: 3}
+  - {fileID: 8923279681355363289, guid: 78314b1162ce8f84ea8faaebf08029ad, type: 3}
+  - {fileID: 1399723489958909100, guid: 5cdc911ff0478d041854f0f394d396e8, type: 3}
+  - {fileID: 7552380041853109597, guid: d834b0b4232b27b4696c37624214b06c, type: 3}
+  bankNotes: []
 --- !u!1 &1574284666
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +234,7 @@ GameObject:
   - component: {fileID: 1574284669}
   - component: {fileID: 1574284668}
   - component: {fileID: 1574284667}
+  - component: {fileID: 1574284670}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -282,3 +307,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1574284670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574284666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e12b68a41756714aaf6bd1a007e5b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
