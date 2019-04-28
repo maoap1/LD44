@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShadowMode : MonoBehaviour
 {
-	public static float radius = 2;
+	public static float radius = 2.5f;
 
     private GameObject player;
 

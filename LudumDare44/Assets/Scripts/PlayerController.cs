@@ -72,9 +72,15 @@ public class PlayerController : MonoBehaviour
     public bool isReadyToTurn;
     public bool reverse;
 
-    #endregion
-    // Start is called before the first frame update
-    void Start()
+	#endregion
+	// Start is called before the first frame update
+	void Start()
+	{
+		isSleeping = true;
+		sleepingStartTime = Time.timeSinceLevelLoad;
+		sleepTime = 1;
+	}
+	void Awake()
     {
         direction = Vector3.down;
         lastDirection = ID_DOWN;
@@ -116,7 +122,7 @@ public class PlayerController : MonoBehaviour
                 iteration = 0;
                 if (tail.Count == 0)
                 {
-                    SceneManager.LoadScene("GameOver");
+                    SceneManager.LoadScene("Malostranske");
                     return;
                 }
                 segment = tail.Peek();
@@ -143,7 +149,10 @@ public class PlayerController : MonoBehaviour
 		{
             if (isReadyToTurn)
             {
-                if (Input.GetButtonDown("Flee"))
+                if (Input.GetButtonDown("Flee") ||
+					(Input.GetKeyDown(KeyCode.Space)) ||
+					(Input.GetKeyDown(KeyCode.KeypadEnter)) ||
+					(Input.GetKeyDown(KeyCode.Escape)))
                 {
                     reverse = true;
                     transform.position = new Vector3(0, 0, -15);
@@ -249,7 +258,7 @@ public class PlayerController : MonoBehaviour
 				isSleeping = false;
 	}
 	float sleepingStartTime;
-	int sleepTime;
+	float sleepTime;
 	bool isSleeping = false;
 	private void OnTriggerEnter2D(Collider2D other)
 	{
