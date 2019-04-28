@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 176078284176998583}
   - component: {fileID: -6138568951454676861}
   m_Layer: 0
-  m_Name: Lipstick 1
+  m_Name: Matchbox
   m_TagString: Garbage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e2ac41576d8729440bd1cc642b4c098c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
