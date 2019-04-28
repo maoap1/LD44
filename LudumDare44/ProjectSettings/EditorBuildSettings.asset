@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 53825ab3073c5ea4a99fdee49d35a9c3
   - enabled: 1
-    path: Assets/Scenes/KarelPlayground.unity
+    path: Assets/Scenes/GenericPickpocket.unity
     guid: 972760f5557291a46aa7fdb43c3503a3
   m_configObjects: {}

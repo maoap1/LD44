@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 {
 	#region defionitions of fields
 	public float segmentsZ = 900;
+    public string motherScene;
 
 	const int ID_UP = 1;
 	const int ID_LEFT = 2;
@@ -122,7 +123,7 @@ public class PlayerController : MonoBehaviour
                 iteration = 0;
                 if (tail.Count == 0)
                 {
-                    SceneManager.LoadScene("Malostranske");
+                    SceneManager.LoadScene(motherScene);
                     return;
                 }
                 segment = tail.Peek();
