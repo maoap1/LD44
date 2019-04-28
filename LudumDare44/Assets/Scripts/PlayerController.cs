@@ -123,7 +123,10 @@ public class PlayerController : MonoBehaviour
                 iteration = 0;
                 if (tail.Count == 0)
                 {
-                    SceneManager.LoadScene(motherScene);
+					if (CoinsAmmountDisplay.isWinGame)
+						SceneManager.LoadScene("WinScene");
+					else
+						SceneManager.LoadScene(motherScene);
                     return;
                 }
                 segment = tail.Peek();
