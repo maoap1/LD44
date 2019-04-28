@@ -17,7 +17,6 @@ public class DestroyOther : DestroyMe
         {
             child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
-        GetComponent<SpriteRenderer>().enabled = false;
     }
 }
 
