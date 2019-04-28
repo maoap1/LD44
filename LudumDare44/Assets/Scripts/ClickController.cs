@@ -13,11 +13,11 @@ public class ClickController : MonoBehaviour
     private Vector3 hoverScaleVector;
     private Vector3 clickScaleVector;
 
-    //private AudioSource audioSource;
+    private AudioSource audioSource;
 
     void Start()
     {
-        //audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         normalScaleVector = transform.localScale;
         hoverScaleVector = new Vector3(normalScaleVector.x * hoverScale, normalScaleVector.y * hoverScale, normalScaleVector.z);
         clickScaleVector = new Vector3(normalScaleVector.x * clickScale, normalScaleVector.y * clickScale, normalScaleVector.z);
@@ -25,6 +25,14 @@ public class ClickController : MonoBehaviour
 
     void OnMouseEnter()
     {
+        if (audioSource != null)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+
         transform.localScale = hoverScaleVector;
     }
 
@@ -36,7 +44,6 @@ public class ClickController : MonoBehaviour
     void OnMouseDown()
     {
         transform.localScale = clickScaleVector;
-		//audioSource.Play();
 		if (sceneToShow != null)
 			SceneManager.LoadScene(sceneToShow);
     }

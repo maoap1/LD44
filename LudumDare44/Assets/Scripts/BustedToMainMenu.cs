@@ -8,7 +8,7 @@ public class BustedToMainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetButtonDown("Flee") ||
+		if (Input.GetButtonDown("Flee") || 
 			Input.GetKeyDown(KeyCode.Escape) ||
 			Input.GetKeyDown(KeyCode.Space) ||
 			Input.GetKeyDown(KeyCode.KeypadEnter) ||
