@@ -4,6 +4,12 @@ using UnityEngine;
 
 public enum MoneyType
 {
-   Crown,
-   Euro
+   Copper,
+   Silver,
+   Gold,
+   Pink,
+   Green,
+   Blue,
+   Yellow,
+   Red
 }
