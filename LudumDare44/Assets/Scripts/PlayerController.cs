@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
                 if (tail.Count == 0)
                 {
 					if (CoinsAmmountDisplay.isWinGame)
-						SceneManager.LoadScene("WinScene",);
+						SceneManager.LoadScene("WinScene");
 					else
 						SceneManager.LoadScene(motherScene);
                     return;
