@@ -515,12 +515,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 998a9ffd283bff44f921fcb3e6a34a1e, type: 3}
-  - {fileID: 8300000, guid: 15dff57a7f8e28d4fb982a364a769c0c, type: 3}
-  - {fileID: 8300000, guid: a2b4f20633ac8474a82227a2835a886f, type: 3}
-  - {fileID: 8300000, guid: a65252a339a21ec43a889d7548d7a772, type: 3}
-  - {fileID: 8300000, guid: 835e3a8216cfc6140b4908c97e6ece32, type: 3}
-  - {fileID: 8300000, guid: a2b4f20633ac8474a82227a2835a886f, type: 3}
+  - {fileID: 8300000, guid: f1d5cf00030a50b4685c6ad77631daa9, type: 3}
+  - {fileID: 8300000, guid: da9d031f7e4ff474a92884df66f9ffb3, type: 3}
+  - {fileID: 8300000, guid: f1d5cf00030a50b4685c6ad77631daa9, type: 3}
+  - {fileID: 8300000, guid: f614800b92cdc574e9aca81a159cd2a6, type: 3}
   - {fileID: 8300000, guid: f1d5cf00030a50b4685c6ad77631daa9, type: 3}
   - {fileID: 8300000, guid: f1d5cf00030a50b4685c6ad77631daa9, type: 3}
   source: {fileID: 0}
@@ -850,6 +848,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: c(l)ock
       objectReference: {fileID: 0}
+    - target: {fileID: 4697701640204074916, guid: 70a14ac21c320c8429b9bf86dbf30470,
+        type: 3}
+      propertyPath: sceneToShow
+      value: Malostranske1
+      objectReference: {fileID: 0}
     - target: {fileID: 8405068045074283632, guid: 70a14ac21c320c8429b9bf86dbf30470,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -904,11 +907,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4697701640204074916, guid: 70a14ac21c320c8429b9bf86dbf30470,
-        type: 3}
-      propertyPath: sceneToShow
-      value: Malostranske1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70a14ac21c320c8429b9bf86dbf30470, type: 3}

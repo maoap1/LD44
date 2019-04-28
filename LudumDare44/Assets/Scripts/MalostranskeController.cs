@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class MalostranskeController : MonoBehaviour
 {
-
     public AudioClip[] clips;
     public AudioSource source;
-    public float newClip;
-    public float timer;
+    public float newClip = 0.0f;
+    public float timer = 0.0f;
+
+    public int oldClipNum = 0;
     void Start()
     {
         source = gameObject.AddComponent<AudioSource>();
+        source.PlayOneShot(clips[oldClipNum]);
     }
     void Update()
     {
@@ -25,7 +27,11 @@ public class MalostranskeController : MonoBehaviour
 
     void MakeNewClip()
     {
-        int clipNum = Random.Range(0, clips.Length);
+        int clipNum = oldClipNum;
+        while (clipNum == oldClipNum)
+        {
+            clipNum = Random.Range(0, clips.Length);
+        } 
         if (!source.isPlaying)
         {
             source.loop = true;
