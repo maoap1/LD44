@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segmentsZ: 900
-  motherScene: Malostranske1
+  motherScene: Malostranske2
   speed: 0.04
   shift: 6
   reverseShift: 1
