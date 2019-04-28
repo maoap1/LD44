@@ -520,6 +520,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b90f96830c88d41419e6bac7733634b0, type: 3}
   - {fileID: 8300000, guid: 145cc346407590d419a1fd485ff7f9f2, type: 3}
   - {fileID: 8300000, guid: 5b1d883d5014adc4eb7e37a1737dad42, type: 3}
+  - {fileID: 8300000, guid: f1d5cf00030a50b4685c6ad77631daa9, type: 3}
+  - {fileID: 8300000, guid: f1d5cf00030a50b4685c6ad77631daa9, type: 3}
   source: {fileID: 0}
   newClip: 0
   timer: 0
