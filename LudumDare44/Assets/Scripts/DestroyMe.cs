@@ -11,8 +11,6 @@ public abstract class DestroyMe : MonoBehaviour
     void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
-        //audioSource.Play();
-
     }
     public virtual int SleepTime { get; protected set; }
 	protected virtual void Activate()

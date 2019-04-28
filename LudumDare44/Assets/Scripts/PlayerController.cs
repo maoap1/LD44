@@ -24,7 +24,9 @@ public class PlayerController : MonoBehaviour
 	const int ID_RIGHT = 3;
 	const int ID_DOWN = 4;
 
-	public float speed = 0.05f;
+    public AudioSource audioSource;
+
+    public float speed = 0.05f;
 	public int shift = 4;
     public int reverseShift = 1;
 	public TurnFromToOffsets UpLeft = new TurnFromToOffsets(
@@ -80,9 +82,9 @@ public class PlayerController : MonoBehaviour
 		sleepingStartTime = Time.timeSinceLevelLoad;
 		sleepTime = 1;
         reverseMusicPlaying = false;
-
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
-	void Awake()
+    void Awake()
     {
         direction = Vector3.down;
         lastDirection = ID_DOWN;
@@ -117,6 +119,11 @@ public class PlayerController : MonoBehaviour
 	{
         if (reverse)
         {
+            if (!reverseMusicPlaying)
+            {
+                audioSource.Play();
+                reverseMusicPlaying = true;
+            }
             if (iteration >= reverseShift)
             {
                 GameObject segment = tail.Pop();
