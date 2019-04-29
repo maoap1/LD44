@@ -50,7 +50,7 @@ public class ClickController : MonoBehaviour
     void OnMouseDown()
     {
         transform.localScale = clickScaleVector;
-		if (sceneToShow != null)
+		if (sceneToShow != "")
 			SceneManager.LoadScene(sceneToShow);
     }
 
