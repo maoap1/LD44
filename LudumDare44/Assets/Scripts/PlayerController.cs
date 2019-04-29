@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
 					(Input.GetKeyDown(KeyCode.Escape)))
                 {
                     reverse = true;
-                    transform.position = new Vector3(0, 0, -15);
+                    transform.position = new Vector3(100, 100, -15);
                     GameObject segment = tail.Peek();
                     foreach (Transform child in segment.transform)
                     {
@@ -264,15 +264,11 @@ public class PlayerController : MonoBehaviour
 			}
 			transform.position += speed * direction;
 		}
+        if (isSleeping)
+            if (isSleeping && sleepingStartTime + sleepTime < Time.timeSinceLevelLoad)
+                isSleeping = false;
+    }
 
-	}
-
-	private void FixedUpdate()
-	{
-		if (isSleeping)
-			if (isSleeping && sleepingStartTime + sleepTime < Time.timeSinceLevelLoad)
-				isSleeping = false;
-	}
 	float sleepingStartTime;
 	float sleepTime;
 	bool isSleeping = false;
