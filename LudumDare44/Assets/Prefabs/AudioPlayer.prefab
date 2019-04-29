@@ -46,7 +46,9 @@ MonoBehaviour:
   NPCList: []
   bystander:
   - {fileID: 8300000, guid: da9d031f7e4ff474a92884df66f9ffb3, type: 3}
+  - {fileID: 8300000, guid: c198bf00102d4044c9535f0284045b2d, type: 3}
   - {fileID: 8300000, guid: f614800b92cdc574e9aca81a159cd2a6, type: 3}
+  - {fileID: 8300000, guid: b92f7e81d8301954392c8f727efba286, type: 3}
   silence: {fileID: 8300000, guid: f1d5cf00030a50b4685c6ad77631daa9, type: 3}
   source: {fileID: 0}
   newClip: 0
