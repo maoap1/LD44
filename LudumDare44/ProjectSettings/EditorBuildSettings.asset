@@ -39,6 +39,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Panda.unity
     guid: ca82ebd4432acb544aed3ea28e124e2a
   - enabled: 1
+    path: Assets/Scenes/LegendScene2.unity
+    guid: 6fb1416995b67264eb88498fc6dc655b
+  - enabled: 1
     path: Assets/Scenes/Selfie.unity
     guid: 54522ee62b35d5943bfbe2c5688e2ecb
   - enabled: 1
