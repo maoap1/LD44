@@ -23,7 +23,7 @@ class SceneManager : MonoBehaviour
 	protected static float fadingTime = 1;
 	private static float lastFadeTime = 0;
 
-	private bool used = false;
+	bool used = false;
 
 	public static void LoadScene(string SceneName) => Fade<SceneManager>(SceneName);
 
@@ -44,26 +44,30 @@ class SceneManager : MonoBehaviour
 
 	public static void FadeIn() => Fade<SceneManageFadeIn>("");
 
-	private void Awake()
-	{
-		if (used)
-			Destroy(gameObject);
-		else
-			used = true;
-	}
-
 	private void Update()
 	{
-		value += (Time.deltaTime / fadingTime) * (endvalue - startValue);
-		GetComponent<Image>().color = new Color(
-			GetComponent<Image>().color.r,
-			GetComponent<Image>().color.g,
-			GetComponent<Image>().color.b,
-			value);
-		if (!Check())
+		if (!used)
 		{
-			if (HasSceneName)
-				UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+			value += (Time.deltaTime / fadingTime) * (endvalue - startValue);
+			GetComponent<Image>().color = new Color(
+				GetComponent<Image>().color.r,
+				GetComponent<Image>().color.g,
+				GetComponent<Image>().color.b,
+				value);
+			if (!Check())
+			{
+				if (HasSceneName)
+				{
+					AsyncOperation op = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
+					while (op.progress < 0.9f)
+					{
+						used = true;
+					}
+					used = false;
+				}
+				Destroy(gameObject);
+
+			}
 		}
 	}
 }
