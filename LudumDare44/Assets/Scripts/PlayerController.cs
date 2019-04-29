@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 0.05f;
 	public int shift = 4;
     public int reverseShift = 1;
-	public TurnFromToOffsets UpLeft = new TurnFromToOffsets(
+
+    public TurnFromToOffsets UpLeft = new TurnFromToOffsets(
         first: new Vector3(0.075f, -0.4606f, 0),
 		second: new Vector3(-0.931f, -0.066f, 0)
 		);
@@ -66,7 +67,10 @@ public class PlayerController : MonoBehaviour
 	public GameObject leftTurnSegment;
 	public GameObject rightTurnSegment;
 
-	public Stack<GameObject> tail;
+
+
+    [Header("Debug variables")]
+    public Stack<GameObject> tail;
 	public Vector3 direction;
 	public int iteration = 27;
 	public int lastDirection;

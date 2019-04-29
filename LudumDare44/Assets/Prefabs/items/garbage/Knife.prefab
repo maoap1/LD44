@@ -61,6 +61,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  subtitles: {fileID: 0}
+  translation: This is still being manufactured?
   SleepingTime: 1
 --- !u!82 &-6138568951454676861
 AudioSource:

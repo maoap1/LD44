@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  subtitles: {fileID: 0}
+  translation: I always wished that!
   myType: 4
 --- !u!114 &2233567206747194040
 MonoBehaviour:
@@ -72,7 +74,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9b1e1df75e6c5fc4f88956a6e1269cba, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

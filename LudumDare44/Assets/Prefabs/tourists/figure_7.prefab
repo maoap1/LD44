@@ -234,3 +234,5 @@ MonoBehaviour:
   hoverScale: 1.1
   clickScale: 1.2
   sceneToShow: 
+  mouseEnterSound: {fileID: 8300000, guid: 15dff57a7f8e28d4fb982a364a769c0c, type: 3}
+  id: 0

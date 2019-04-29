@@ -13,11 +13,19 @@ public class ClickController : MonoBehaviour
     private Vector3 hoverScaleVector;
     private Vector3 clickScaleVector;
 
-    //private AudioSource audioSource;
+    public AudioClip mouseEnterSound;
+    public int id;
+
+    private GameObject audioPlayer;
 
     void Start()
     {
-        //audioSource = gameObject.GetComponent<AudioSource>();
+        if (mouseEnterSound != null)
+        {
+            audioPlayer = GameObject.Find("AudioPlayer");
+            id = audioPlayer.GetComponent<MalostranskeController>().RegisterNPCClip(mouseEnterSound);
+        }
+
         normalScaleVector = transform.localScale;
         hoverScaleVector = new Vector3(normalScaleVector.x * hoverScale, normalScaleVector.y * hoverScale, normalScaleVector.z);
         clickScaleVector = new Vector3(normalScaleVector.x * clickScale, normalScaleVector.y * clickScale, normalScaleVector.z);
@@ -25,6 +33,12 @@ public class ClickController : MonoBehaviour
 
     void OnMouseEnter()
     {
+
+        if (mouseEnterSound != null)
+        {
+            PlaySound(mouseEnterSound);
+        }
+
         transform.localScale = hoverScaleVector;
     }
 
@@ -36,13 +50,21 @@ public class ClickController : MonoBehaviour
     void OnMouseDown()
     {
         transform.localScale = clickScaleVector;
-		//audioSource.Play();
-		if (sceneToShow != null)
+		if (sceneToShow != "")
 			SceneManager.LoadScene(sceneToShow);
     }
 
     void OnMouseUpAsButton()
     {
         transform.localScale = hoverScaleVector;
+    }
+
+    /// <summary>
+    /// This is the best point for changes with audio
+    /// </summary>
+    /// <param name="clip"></param>
+    void PlaySound(AudioClip clip)
+    {
+        audioPlayer.GetComponent<MalostranskeController>().PlayNPC(id);
     }
 }

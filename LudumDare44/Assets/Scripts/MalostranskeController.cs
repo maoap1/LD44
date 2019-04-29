@@ -4,33 +4,68 @@ using UnityEngine;
 
 public class MalostranskeController : MonoBehaviour
 {
-
-    public AudioClip[] clips;
+    public List<AudioClip> NPCList = new List<AudioClip>();
+    public AudioClip[] bystander;
+    public AudioClip silence;
     public AudioSource source;
-    public float newClip;
-    public float timer;
+    public float newClip = 0.0f;
+    public float timer = 0.0f;
+
+    private AudioClip playing;
+    private int NPCsIndex = 0;
+    private bool NPCIsSpeaking;
     void Start()
     {
         source = gameObject.AddComponent<AudioSource>();
+        source.PlayOneShot(silence);
+        NPCIsSpeaking = false;
     }
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= newClip + 1)
+        if (NPCIsSpeaking)
+        {
+            if (!source.isPlaying)
+            {
+                NPCIsSpeaking = false;
+                playing = silence;
+                source.PlayOneShot(playing);
+            }
+        }
+        else
         {
             MakeNewClip();
-            timer = 0;
         }
     }
 
     void MakeNewClip()
     {
-        int clipNum = Random.Range(0, clips.Length);
         if (!source.isPlaying)
         {
-            source.loop = true;
-            source.PlayOneShot(clips[clipNum]);
+            if (playing == silence)
+            {
+                playing = bystander[Random.Range(0, bystander.Length)];
+            }
+            else
+            {
+                playing = silence;
+            }
+            source.PlayOneShot(playing);
         }
-        newClip = clips[clipNum].length;
+    }
+
+    public void PlayNPC(int id)
+    {
+        if (!NPCIsSpeaking)
+        {
+            NPCIsSpeaking = true;
+            source.Stop();
+            source.PlayOneShot(NPCList[id]);
+        }
+    }
+
+    public int RegisterNPCClip(AudioClip clip)
+    {
+        NPCList.Add(clip);
+        return NPCsIndex++;
     }
 }
