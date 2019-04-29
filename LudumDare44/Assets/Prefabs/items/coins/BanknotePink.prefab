@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  subtitles: {fileID: 0}
+  translation: Bingo!
   myType: 3
 --- !u!114 &2233567206747194040
 MonoBehaviour:

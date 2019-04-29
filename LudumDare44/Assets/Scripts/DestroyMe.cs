@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public abstract class DestroyMe : MonoBehaviour
 {
-    public AudioSource audioSource;
-
+    public AudioSource audioSource; 
+    public string translation;
     bool used = false;
 
     void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
     }
+
     public virtual int SleepTime { get; protected set; }
 	protected virtual void Activate()
 	{
@@ -28,6 +30,7 @@ public abstract class DestroyMe : MonoBehaviour
 		{
 			used = true;
             audioSource.Play();
+            GameObject.Find("Subtitles").GetComponent<SubtitlesScript>().Show(translation, audioSource);
             Activate();
 		}
 	}
